@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .container{
+        background-image: url(../videos/library-846.mp4);
+        background-position: center;
+        background-size: cover;
+    }
+    
+   
+    
+    h2{
+        text-align: center;
+    }
+    button{
+        color: #000;
+        { color: #000000; }
+    }
+    
+    submit{
+        color: #000;
+    }
+</style>
+    
+<script>
+    
+</script>
+<!-- Form content -->
+<main class="container-signup p-5">
+        <div class="sub-cont p-5">
+            <div class="form">   
+                <h2>Create Your Account Here</h2>
+                    {% include 'forms.html' %}
+            </div>
+        </div>
+        <div class="row-signup" style="margin-top: 20px;">
+            <div class="col-4"></div>
+            <div class="col-3 p-10">
+                
+            </div>
+            <div class="col-3"></div>
+        </div>
+</main>
+{% endblock %}

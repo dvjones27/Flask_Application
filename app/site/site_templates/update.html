@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    th, td {
+        padding: 10px;
+    }
+    table {
+        border-spacing: 30px;
+        background-color: rgba(255, 255, 255, 0.75);
+        font-family: Garamond, 'Garamond', Garamond, serif;
+    }
+    
+    h3{
+        background-color:rgba(5, 49, 93, 0.75);
+        color: #ffffff;
+        background-position: center;
+        align-items: center;
+    }
+    
+    .container-books{
+        background-color: rgba(5, 49, 93, 0.75);
+        color: #ffffff;
+    }
+    
+    .container-results{
+        background-color: #000000;
+    }
+    
+    .edit_delete{
+        
+        font-family: Garamond, 'Garamond', Garamond, serif;
+    }
+    
+    .container-search-form{
+        background-position: center;
+        align-items: center;
+        vertical-align: middle;
+    }
+    
+    
+    .table-pad{
+        background-color: white;
+        background-position: center;
+        align-items: center;
+        opacity: 0.9;
+    }
+    
+    label{
+        text-align: center;
+        background-position: center;
+        vertical-align: center;
+    }
+    
+    
+    body {
+        background-image: url('../../static/images/tom-hermans-9BoqXzEeQqM-unsplash.jpg') ;
+        background-position: center;
+        font-family: Garamond, 'Garamond', Garamond, serif;
+        align-items: center;
+        height: 100vh;
+        background-size: contain;
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+    
+    .desc{
+        width: 750px;
+        height: 125px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        align-items: center;
+        background-position: center;
+    }
+    
+    .select{
+        font-family: Garamond, 'Garamond', Garamond, serif;
+        
+    }
+    
+    .form{
+        background-position: center;
+    }
+    
+    .form-input{
+        font-family: Garamond, 'Garamond', Garamond, serif;
+        background-position: center;
+    }
+        
+::placeholder{
+    font-family: Garamond, 'Garamond', Garamond, serif;
+    align-items: center;
+    color: red;
+    text-align: center;
+}
+
+/*the container must be positioned relative:*/
+.dropdown-cover {
+    position: center;
+    font-family: Garamond;
+  }
+  
+  
+  .select-selected {
+    background-color: gray;
+  }
+  
+  /*style the arrow inside the select element:*/
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  /*point the arrow upwards when the select box is open (active):*/
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /*style items (options):*/
+  .select-items {
+    position: absolute;
+    background-color: red;
+    color: red;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+    
+</style>
+<section class="bg-light text-center bg-light text-dark text-center shadow">
+    <div class="container-books p-4">
+        <div class="row">
+            <div>
+                <h2><br>
+                     Books for All!
+                </h2>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+                <img  src="../../static/videos/search-5393-2.mp4" class="img-fluid p-3 " alt="Video Scrolling Bookshelves">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-center">
+    <div class="container-search-form p-3">
+        <div class="row align-items-center"><br>
+            <h3 class="p-3">Perform Your Search, Entry, Update and Deletion Here</h3>
+            <section class="text-center p-5">
+                <form class="form-input" method="post" action = "{{ url_for('site.books') }}">
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="title">Title: </label><input type="text" name="title" autofocus  placeholder="Title">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="author">Author: </label><input type="text" name="author"  autofocus placeholder="Author">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="isbn">ISBN: </label>
+                                <input type="text" name="isbn" autofocus>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="dropdown-cover">
+                                    <label for="cover">Cover: </label>
+                                    <select id = "cover" name="cover">
+                                        <option value="0">Select Cover:</option>
+                                        <option value="hardback">Hardback</option>
+                                        <option value="paperback">Paperback</option>
+                                        <option value="digital">Digital</option>
+                                        <option value="audio">Audio</option>   
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="copyright">Copyright: </label>
+                                <input type="text" name="copyright" placeholder="Enter as ##-##-##" autofocus>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="length">Pages: </label>
+                                <input type="text" name="length" placeholder="Pages" autofocus>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="description">Description: </label>
+                                <textarea rows="7" cols="100" name="description" placeholder="Description"></textarea>
+                                <!-- <input type="text" name="description" placeholder="Description" rows="7" cols="50" maxlength="2500"  autofocus> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" name="create" formaction="/create_book">Create Book</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+        </div>
+        <div class="row"><br>
+            
+            <h3 class="container-results p-2">Here are the Inventory Results</h3>
+            <table>
+                <thead style="background-color: black; color: white">
+                <tr>
+                    <th><label for="ID">ID:</label><br></th>
+                    <th><label for="title">Title:</label><br></th>
+                    <th><label for="author">Author:</label><br></th>
+                    <th><label for="pages">Pages:</label><br></th>
+                    <th><label for="isbn">ISBN:</label><br></th>
+                    <th><label for="cover">Cover:</label><br></th>
+                    <th><label for="copyright">Copyright:</label><br></th>
+                    <th><label for="description">Description:</label><br></th>
+                    <th><label for="actions">Actions:</label><br></th>
+                </tr>
+                </thead
+                {% for book in books %}
+                
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.length }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.cover }}</td>
+                    <td>{{ book.copyright }}</td>
+                    <td>{{ book.description }}</td>
+                   
+                     <td>   
+                        <span style="font-size: 20px; color: black">
+                            <a href="{{ url_for('site.update', id=book.isbn) }}"><i class="fas fa-edit"></i></a>
+                        </span>
+                        <form class="edit_delete" method="POST" action="{{ url_for('site.update', id=book.isbn) }}" style="justify-content: center; float: left" >
+                            <input type="hidden" name="method" value="Update">
+                            <button type="submit" class="fa-edit fa-2xs btn btn-warning text-dark update-button" name="update">Edit</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('site.delete', id=book.isbn) }}" style="justify-content: center; float: right" >
+                            <input type="hidden" name="method" value="Delete">
+                            <button type="submit" class="fa-2xs btn btn-danger text-dark delete-button" name="delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+              
+        </div>
+    </div>
+</section>
+{% endblock %}

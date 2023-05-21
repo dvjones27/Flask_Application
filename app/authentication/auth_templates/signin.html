@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .sign-in{
+        background-position: center;
+        background-size: cover;
+    }
+    
+    h2{
+        text-align: center;
+    }
+    button{
+        color: #000;
+    }
+    
+    input{
+        background-color: yellow;
+    }
+</style>
+    
+<script>
+    
+</script>
+
+
+
+<main class="container p-5">
+    <div class="row">
+            <div class="cont">
+                <div class="form sign-in">
+                    <h2>Great to See You Again!</h2>
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            <fieldset id="username-field">
+                                <label>
+                                    <span>{{ form.username.label }}</span>
+                                    {{ form.username(class = "form-control", placeholder = "Enter Username") }}
+                                </label>
+                            </fieldset>
+                        </div>
+                        <fieldset id="pass-field">
+                            <label>
+                                <span>{{ form.password.label }}</span>
+                                {{ form.password(class = "form-control", placeholder = "Enter Password") }}
+                            </label>
+                        </fieldset>
+                        {{ form.submit_button(class = "btn btn-primary btn-block mt-2")}}
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-4"></div>
+        <div class="col-3 p-10">
+            
+        </div>
+        <div class="col-3"></div>
+    </div>
+</main>
+{% endblock %}

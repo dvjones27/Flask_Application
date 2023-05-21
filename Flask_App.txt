@@ -1,0 +1,9 @@
+Having worked alongside the code-along for the phonebook, you will now create your own personal Flask application with a site to display, authentication routes, and all CRUD API routes ready to operate. I should be able to write API calls for your app from Insomnia to test the functionality of the app after I log in to get a token. You may choose one of the following projects:
+- A meme generator (eventually, users will use Insomnia / a front end application [not yet created] to send an image selection [use about 10 images that they can select from, no need to put bazillions of data pieces into your database] and write their own caption). Hint: Give images an ID and use that data piece rather than the entire image to target images in the database (or just return the IDs and assign those IDs to images in the front end later -- don't worry about this just yet).
+- A digital library app, including data points for things like ISBN numbers, author name, book title, book length, whether it's hardcover or paperback, etc. No need to give our books a full text body here since that'll get out of hand quickly with the length of data. 
+- A whisky collection / beverage of your choice collection.
+
+
+Remember, these should basically be structured identically to the Phonebook thus far - the phonebook doesn't display contacts, but it allows users to authenticate, and the API tests we run in Insomnia return the expected data. We will be making a front-end website to display our data in Module 7, so your API routes will need to work in Insomnia before you move forward. You may also have to use Google to research new techniques and tools for storing data.
+
+PLEASE SUBMIT BOTH YOUR GITHUB LINK AND HOSTED URL. ENSURE THAT YOU HAVE DATA IN YOUR DATABASE FOR YOUR API. If you've made the library app, for example, please make sure you have 2-3 books stored on the database so I can see that you've successfully added them, and your app works as it is supposed to.
