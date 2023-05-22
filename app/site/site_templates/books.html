@@ -308,21 +308,21 @@
                     <td>{{ book.copyright }}</td>
                     <td><textarea type="text" rows="7" cols="50" >{{ book.description }}</textarea></td>
                    
-                     <td class="align-items: center; justify-content: space-evenly; ">   
-                        
-                        <form action="{{ url_for('site.update', isbn = book.isbn ) }}" method="POST" style="align-items: center; justify-content: space-evenly; float: right; position: relative; left: -50%; margin: 2px" >
+                     <td class="align-items: center; justify-content: space-evenly; ">
+                        <!-- <form action="{{ url_for('site.update', id = book.isbn ) }}" method="POST" style="align-items: center; justify-content: space-evenly; float: right; position: relative; left: -50%; margin: 2px" >
                             <input type="hidden" name="method" value="Update">
                             <button type="submit" class="btn btn-warning text-dark update-button" name="update"><i class="fa-regular fa-md fa-pen-nib"></i>
                             </button>
-                        </form>
+                        </form> -->
                         <form method="POST" action="{{ url_for('site.delete', id = book.isbn ) }}" style="align-items: center; justify-content: space-evenly; float: left; position: relative; right: -50%; margin: 2px"  >
                             <input type="hidden" name="method" value="Delete">
-                            <button type="submit" class="btn btn-danger text-dark delete-button" name="delete"><i class="fa-regular fa-md fa-trash"></i>
+                            <button type="submit" class="btn btn-danger text-dark delete-button" onClick="deleteConfirmation('Are you sure you want to DELETE?')" name="delete"><i class="fa-regular fa-md fa-trash"></i>
                             </button>
                             
                         </form>
                     </td>
                 </tr>
+                
                 {% endfor %}
             </table>
               

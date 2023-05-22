@@ -40,10 +40,10 @@ def create_book():
     return redirect(url_for('site.books'))
 
 
-@site.route('/search')
-def search():
+# @site.route('/search')
+# def search():
 
-    return render_template('search.html')
+#     return render_template('search.html')
 
 
 # @site.route('/<int:id>/update', methods=['GET','PUT', 'POST'])
@@ -107,11 +107,11 @@ def search():
 #     return redirect(url_for('site.update', book = book))
 
 
-@site.route('/update/<string:isbn>', methods=[ 'GET','POST'])
+@site.route('/update/<string:id>', methods=['POST', 'PUT'])
 @login_required
-def update(isbn):
-    # i = Book.query.get_or_404(id)
-    # book = Book.query.get(id)
+def update(id):
+    # book = Book.query.get_or_404(id)
+    book = Book.query.get(id)
     # if 'isbn' in request.form:
     #     i.isbn = request.form['isbn']
     # db.session.commit()
@@ -119,19 +119,22 @@ def update(isbn):
     
     # user_id = current_user.id
     # book = Book.query.filter_by(isbn=isbn).first()
-    book = Book.query.filter_by(isbn=isbn).first()
+    # book = Book.query.get(isbn)
+    
+    # book = Book.query.filter_by(id=id).first()
     # form = BookForm(obj=book)
-    if request.method == 'POST':
+    # id = current_user.id
+    # if request.method == 'POST':
         # db.session.delete(book)
         # db.session.commit()
-        if book:
-            isbn = request.form['isbn']
-            title = request.form['title']
-            author = request.form['author']
-            length = request.form['length']
-            cover = request.form['cover']
-            copyright = request.form['copyright']
-            description = request.form['description']
+        # if book:
+    isbn = request.form['isbn']
+    title = request.form['title']
+    author = request.form['author']
+    length = request.form['length']
+    cover = request.form['cover']
+    copyright = request.form['copyright']
+    description = request.form['description']
         
         # book.isbn = isbn
         # book.title = title
@@ -141,22 +144,22 @@ def update(isbn):
         # book.copyright = copyright
         # book.description = description
                 
-            book = Book(
-                isbn = isbn,
-                title = title,
-                author =author,
-                length = length,
-                cover = cover,
-                copyright = copyright,
-                description = description
-            )
-    
-            db.session.update(book)
-            db.session.commit()
-            return redirect(url_for('site.books'))
-        return f"There is no book with isbn: {isbn}."
-        
+    book = Book(
+        isbn = isbn,
+        title = title,
+        author =author,
+        length = length,
+        cover = cover,
+        copyright = copyright,
+        description = description
+    )
+
+    db.session.update(book)
+    db.session.commit()
     return redirect(url_for('site.books'))
+    #     return f"There is no book with isbn: {isbn}."
+        
+    # return redirect(url_for('site.books'))
 
 
 # return redirect(url_for('site.books'))
