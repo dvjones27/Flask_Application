@@ -23,6 +23,7 @@ packaging==21.3
 psycopg2-binary==2.9.5
 python-dotenv
 pyparsing==3.0.9
+requests==2.31.0
 six==1.15.0
 SQLAlchemy==1.4.44
 Werkzeug==2.2.2
