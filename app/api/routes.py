@@ -32,6 +32,8 @@ def get_books(current_user_token):
     user_token = current_user_token.token
     books = Book.query.filter_by(user_token = user_token).all()
     response = books_schema.dump(books)
+    return jsonify(response)
+    
     
 @api.route('/books/<id>', methods=['GET'])
 @token_required
